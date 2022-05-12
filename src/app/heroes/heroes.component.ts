@@ -9,24 +9,24 @@ import { MessageService } from '../message.service';
   styleUrls: ['./heroes.component.css']
 })
 export class HeroesComponent implements OnInit {
-  selectedHero?: Hero;
+  // selectedHero?: Hero;
   heroes: Hero[] = [];
 
   constructor(private heroService: HeroService, private messageService: MessageService) { }
+
+  ngOnInit(): void {
+    this.getHeroes();
+  }
 
   private getHeroes(): void {
    this.heroService.getHeroes().subscribe( heroes => this.heroes = heroes);
     // this.heroes = this.heroService.getHeroesSync();
   }
 
-  onSelect(hero: Hero): void {
-    this.selectedHero = hero;
-    this.messageService.add(`HeroesCompnent: Selected hero id = ${hero.id}`);
-    this.heroService.getHeroes();
-  }
-
-  ngOnInit(): void {
-    this.getHeroes();
-  }
+  // onSelect(hero: Hero): void {
+  //   this.selectedHero = hero;
+  //   this.messageService.add(`HeroesCompnent: Selected hero id = ${hero.id}`);
+  //   this.heroService.getHeroes();
+  // } 
 
 }
